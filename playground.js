@@ -95,18 +95,14 @@ reduce(asyncArray, reducerSum, 0, (res) => {
     console.log(res); // 10
 });
 
-function reduce(asyncArray, fn, initialValue, cb) {
+async function reduce(asyncArray, fn, initialValue, cb) {
 
-    asyncArray.length((len)=>{
-        if (len === 0) {
-            cb(initialValue);
-        }else{
-            asyncArray.pop((element)=>{
-               reduce(asyncArray, fn, initialValue+element, cb);
-            });
-        }
-    });
+    const len = await new Promise(asyncArray.length);
+    if (len === 0) {
+        cb(initialValue);
+        return;
+    }
+    const element = await new Promise(asyncArray.pop);
+    reduce(asyncArray, fn, initialValue+element, cb);
 
-    // добро пожаловать в Callback Hell
-    // твой побег начинается прямо сейчас...
 }
