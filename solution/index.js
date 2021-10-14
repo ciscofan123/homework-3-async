@@ -4,7 +4,10 @@ module.exports = function (Homework) {
     async function reduce(asyncArray, fn, initialValue, cb) {
 
         const len = await new Promise(asyncArray.length);
-        if (len === 0) {
+        const isEnd = await new Promise(resolve => {
+            Homework.equal(len, 0, resolve);
+        });
+        if (isEnd) {
             cb(initialValue);
             return;
         }
