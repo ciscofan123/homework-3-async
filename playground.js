@@ -103,6 +103,10 @@ async function reduce(asyncArray, fn, initialValue, cb) {
         return;
     }
     const element = await new Promise(asyncArray.pop);
-    reduce(asyncArray, fn, initialValue+element, cb);
+    const sum = await new Promise(resolve => {
+        Homework.add(initialValue, element, resolve);
+    });
+
+    reduce(asyncArray, fn, sum, cb);
 
 }
