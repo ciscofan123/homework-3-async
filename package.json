@@ -1,0 +1,14 @@
+{
+  "name": "homework-3-async",
+  "version": "1.0.0",
+  "description": "async Reduce function implementation",
+  "engines" : {
+    "node" : ">=16.0"
+  },
+  "main": "solution/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexandr Krylov",
+  "license": "ISC"
+}
