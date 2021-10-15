@@ -4,7 +4,7 @@ module.exports = function (Homework) {
         const asyncArray = new Homework.AsyncArray(array);
         const len = await new Promise(asyncArray.length);
         for (
-            let i = await new Promise((resolve) => add(0, 0, resolve));
+            let i = 0;
             await new Promise((resolve) => less(i, len, resolve));
             i = await new Promise((resolve) => add(i, 1, resolve))
         ) {
