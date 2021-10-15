@@ -1,24 +1,15 @@
 // solution/index.js
 module.exports = function (Homework) {
-
-    async function reduce(asyncArray, fn, initialValue, cb) {
-
-        const len = await new Promise(asyncArray.length);
-        const isEnd = await new Promise(resolve => {
-            Homework.equal(len, 0, resolve);
-        });
-        if (isEnd) {
-            cb(initialValue);
-            return;
+    return async (array, fn, initialValue, cb) => {
+        const len = await new Promise(array.length);
+        for (
+            let i=0;
+            await new Promise((resolve)=> Homework.less(i,len,resolve));
+            i = await new Promise((resolve)=> Homework.add(i,1,resolve))
+        ){
+            const curValue = await new Promise((resolve) => array.get(i,resolve));
+            initialValue = await new Promise((resolve)=> fn(initialValue, curValue, i, array, resolve)) ;
         }
-        const element = await new Promise(asyncArray.pop);
-        const sum = await new Promise(resolve => {
-            fn(initialValue, element, 0, asyncArray, resolve);
-        });
-        reduce(asyncArray, fn, sum, cb);
-    }
-
-    return (array, fn, initialValue, cb) => {
-        return reduce(array, fn, initialValue, cb);
+        cb(initialValue);
     }
 }
