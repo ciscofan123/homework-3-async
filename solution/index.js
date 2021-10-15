@@ -1,4 +1,3 @@
-// solution/index.js
 module.exports = function (Homework) {
     const {less,add} = Homework;
     return async (array, fn, initialValue, cb) => {
