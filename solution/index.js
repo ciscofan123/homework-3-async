@@ -1,6 +1,6 @@
 module.exports = function (Homework) {
     const {less,add} = Homework;
-    return async (array, fn, initialValue, cb) => {
+    const reduce  = async (array, fn, initialValue, cb) => {
         const asyncArray = new Homework.AsyncArray(array);
         const len = await new Promise(asyncArray.length);
         for (
@@ -12,5 +12,8 @@ module.exports = function (Homework) {
             initialValue = await new Promise((resolve) => fn(initialValue, curValue, i, asyncArray, resolve));
         }
         cb(initialValue);
+    }
+    return (array, fn, initialValue, cb) => {
+        return reduce(array, fn, initialValue, cb);
     }
 }
