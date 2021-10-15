@@ -1,15 +1,13 @@
 module.exports = function (Homework) {
-    const {less,add} = Homework;
     const reduce  = async (array, fn, initialValue, cb) => {
-        const asyncArray = new Homework.AsyncArray(array);
-        const len = await new Promise(asyncArray.length);
+        const len = await new Promise(array.length);
         for (
             let i = 0;
-            await new Promise((resolve) => less(i, len, resolve));
-            i = await new Promise((resolve) => add(i, 1, resolve))
+            await new Promise((resolve) => Homework.less(i, len, resolve));
+            i = await new Promise((resolve) => Homework.add(i, 1, resolve))
         ) {
-            const curValue = await new Promise((resolve) => asyncArray.get(i, resolve));
-            initialValue = await new Promise((resolve) => fn(initialValue, curValue, i, asyncArray, resolve));
+            const curValue = await new Promise((resolve) => array.get(i, resolve));
+            initialValue = await new Promise((resolve) => fn(initialValue, curValue, i, array, resolve));
         }
         cb(initialValue);
     }
